@@ -10,6 +10,7 @@ import 'package:flutter_app2/StatePageB.dart';
 import 'package:flutter_app2/SwitchAndCheckBoxTestRoute.dart';
 import 'package:flutter_app2/TextPage.dart';
 import 'package:flutter_app2/edit_page.dart';
+import 'package:flutter_app2/layout_page.dart';
 import 'package:flutter_app2/progress_page.dart';
 
 import 'FormTestRoute.dart';
@@ -31,6 +32,7 @@ const String SWITCHANDCHECKBOXTESTROUTE = "switchandcheckboxtestroute";
 const String EDITPAGE = "editpage";
 const String FORMTESTROUTE = "formtestroute";
 const String PROGRESSPAGE = "ProgressPage";
+const String LAYOUTPAGE = "LayoutPage";
 
 ///MyApp类代表Flutter应用，它继承了 StatelessWidget类，这也就意味着应用本身也是一个widget。
 class MyApp extends StatelessWidget {
@@ -58,6 +60,7 @@ class MyApp extends StatelessWidget {
         EDITPAGE: (context) => EditPage(),
         FORMTESTROUTE: (context) => FormTestRoute(),
         PROGRESSPAGE: (context) => ProgressPage(),
+        LAYOUTPAGE: (context) => LayoutPage(),
       },
       initialRoute: "/",
       title: 'Flutter Demo',
@@ -194,7 +197,10 @@ class _MyHomePageState extends State<MyHomePage> {
     // Navigator.pushNamed(context, FORMTESTROUTE);
 
     ///进度条
-    Navigator.pushNamed(context, PROGRESSPAGE);
+    // Navigator.pushNamed(context, PROGRESSPAGE);
+
+    ///布局用法
+    Navigator.pushNamed(context, LAYOUTPAGE);
   }
 
   /// 异步方法1

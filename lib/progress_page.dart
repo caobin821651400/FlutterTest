@@ -8,12 +8,32 @@ class ProgressPage extends StatefulWidget {
   _ProgressPageState createState() => _ProgressPageState();
 }
 
-class _ProgressPageState extends State<ProgressPage> {
+class _ProgressPageState extends State<ProgressPage>
+    with SingleTickerProviderStateMixin {
   int _progress = 0;
+  AnimationController _container;
+  Duration timeSpace = const Duration(seconds: 1);
+  Timer _timer;
+
+  @override
+  void initState() {
+    _container =
+        new AnimationController(vsync: this, duration: Duration(seconds: 3));
+    _container.forward();
+    _container.addListener(
+        () => setState(() => {print("value ${_container.value}")}));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _container.dispose();
+    _timer.cancel();
+    super.dispose();
+  }
 
   void change() {
-    const timeSpace = const Duration(seconds: 1);
-    Timer.periodic(timeSpace, (timer) {
+    _timer = Timer.periodic(timeSpace, (timer) {
       print("进度 $_progress");
       setState(() {
         if (_progress > 10) {
@@ -48,17 +68,40 @@ class _ProgressPageState extends State<ProgressPage> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            child: RaisedButton(
-              child: Text("开始"),
-              onPressed: () {
-                change();
-              },
+            child: getCircularProgressIndicator4(_container),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: RaisedButton(
+                    child: Text("开始"),
+                    onPressed: () {
+                      change();
+                    },
+                  ),
+                ),
+              ],
             ),
           )
         ],
       ),
     );
   }
+}
+
+///渐变的进度条
+Widget getCircularProgressIndicator4(AnimationController container) {
+  return Padding(
+    padding: EdgeInsets.all(16),
+    child: LinearProgressIndicator(
+      backgroundColor: Colors.grey[200],
+      valueColor: ColorTween(begin: Colors.grey, end: Colors.green)
+          .animate(container), // 从灰色变成蓝色
+      value: container.value,
+    ),
+  );
 }
 
 ///进度50%
