@@ -12,8 +12,12 @@ import 'package:flutter_app2/TextPage.dart';
 import 'package:flutter_app2/edit_page.dart';
 import 'package:flutter_app2/layout_page.dart';
 import 'package:flutter_app2/progress_page.dart';
+import 'package:flutter_app2/stack_layout_page.dart';
 
 import 'FormTestRoute.dart';
+import 'align_layout_page.dart';
+import 'flex_layout_page.dart';
+import 'flow_layout_page.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -33,6 +37,10 @@ const String EDITPAGE = "editpage";
 const String FORMTESTROUTE = "formtestroute";
 const String PROGRESSPAGE = "ProgressPage";
 const String LAYOUTPAGE = "LayoutPage";
+const String FLEXLAYOUTPAGE = "FlexLayoutPage";
+const String FLOWLAYOUTPAGE = "FlowLayoutPage";
+const String STACKLAYOUTPAGE = "StackLayoutPage";
+const String ALIGNLAYOUTPAGE = "AlignLayoutPage";
 
 ///MyApp类代表Flutter应用，它继承了 StatelessWidget类，这也就意味着应用本身也是一个widget。
 class MyApp extends StatelessWidget {
@@ -61,6 +69,10 @@ class MyApp extends StatelessWidget {
         FORMTESTROUTE: (context) => FormTestRoute(),
         PROGRESSPAGE: (context) => ProgressPage(),
         LAYOUTPAGE: (context) => LayoutPage(),
+        FLEXLAYOUTPAGE: (context) => FlexLayoutPage(),
+        FLOWLAYOUTPAGE: (context) => FlowLayoutPage(),
+        STACKLAYOUTPAGE: (context) => StackLayoutPage(),
+        ALIGNLAYOUTPAGE: (context) => AlignLayoutPage(),
       },
       initialRoute: "/",
       title: 'Flutter Demo',
@@ -200,7 +212,19 @@ class _MyHomePageState extends State<MyHomePage> {
     // Navigator.pushNamed(context, PROGRESSPAGE);
 
     ///布局用法
-    Navigator.pushNamed(context, LAYOUTPAGE);
+    // Navigator.pushNamed(context, LAYOUTPAGE);
+
+    ///弹性布局
+    // Navigator.pushNamed(context, FLEXLAYOUTPAGE);
+
+    ///流失布局
+    // Navigator.pushNamed(context, FLOWLAYOUTPAGE);
+
+    ///叠层布局
+    // Navigator.pushNamed(context, STACKLAYOUTPAGE);
+
+    ///相对布局
+    Navigator.pushNamed(context, ALIGNLAYOUTPAGE);
   }
 
   /// 异步方法1

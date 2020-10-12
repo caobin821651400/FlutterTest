@@ -45,8 +45,8 @@ class _LayoutPageState extends State<LayoutPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                alignment: Alignment(0, 0),
                 //居中，类似坐标轴
+                alignment: Alignment(0, 0),
                 height: 50,
                 width: 50,
                 color: Colors.yellow,
