@@ -62,32 +62,32 @@ Widget createFlow() {
   return Flow(
     delegate: TestFlowDelegate(margin: EdgeInsets.all(10.0)),
     children: <Widget>[
-      new Container(
+       Container(
         width: 50.0,
         height: 50.0,
         color: Colors.red,
       ),
-      new Container(
+       Container(
         width: 50.0,
         height: 50.0,
         color: Colors.green,
       ),
-      new Container(
+       Container(
         width: 50.0,
         height: 50.0,
         color: Colors.blue,
       ),
-      new Container(
+       Container(
         width: 50.0,
         height: 50.0,
         color: Colors.yellow,
       ),
-      new Container(
+       Container(
         width: 50.0,
         height: 50.0,
         color: Colors.brown,
       ),
-      new Container(
+       Container(
         width: 50.0,
         height: 50.0,
         color: Colors.purple,
