@@ -13,12 +13,14 @@ import 'package:flutter_app2/edit_page.dart';
 import 'package:flutter_app2/layout_page.dart';
 import 'package:flutter_app2/progress_page.dart';
 import 'package:flutter_app2/scaffold_page.dart';
+import 'package:flutter_app2/scroll_page.dart.dart';
 import 'package:flutter_app2/stack_layout_page.dart';
 import 'package:flutter_app2/transform_page.dart';
 
 import 'FormTestRoute.dart';
 import 'align_layout_page.dart';
 import 'box_page.dart';
+import 'clip_page.dart.dart';
 import 'flex_layout_page.dart';
 import 'flow_layout_page.dart';
 
@@ -47,6 +49,8 @@ const String ALIGNLAYOUTPAGE = "AlignLayoutPage";
 const String BOXPAGE = "BoxPage";
 const String TRANSFORMPAGE = "TransformPage";
 const String SCAFFOLDPAGE = "ScaffoldPage";
+const String CLIPPAGE = "ClipPage";
+const String SCROLLPAGE = "ScrollPage";
 
 ///MyApp类代表Flutter应用，它继承了 StatelessWidget类，这也就意味着应用本身也是一个widget。
 class MyApp extends StatelessWidget {
@@ -82,6 +86,8 @@ class MyApp extends StatelessWidget {
         BOXPAGE: (context) => BoxPage(),
         TRANSFORMPAGE: (context) => TransformPage(),
         SCAFFOLDPAGE: (context) => ScaffoldPage(),
+        CLIPPAGE: (context) => ClipPage(),
+        SCROLLPAGE: (context) => ScrollPage(),
       },
       initialRoute: "/",
       title: 'Flutter Demo',
@@ -242,7 +248,13 @@ class _MyHomePageState extends State<MyHomePage> {
     // Navigator.pushNamed(context, TRANSFORMPAGE);
 
     ///scaffold
-    Navigator.pushNamed(context, SCAFFOLDPAGE);
+    // Navigator.pushNamed(context, SCAFFOLDPAGE);
+
+    ///clip剪裁
+    // Navigator.pushNamed(context, CLIPPAGE);
+
+    ///滑动布局
+    Navigator.pushNamed(context, SCROLLPAGE);
   }
 
   /// 异步方法1

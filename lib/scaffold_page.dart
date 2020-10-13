@@ -24,21 +24,22 @@ class _ScaffoldPageState extends State<ScaffoldPage>
     super.initState();
     // 创建Controller
     _tabController = TabController(length: tabs.length, vsync: this);
+    _tabController.addListener(() {
+      // switch(_tabController.index)
+      print("${_tabController.index}");
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: AppBar(
         leading: createLeading(),
-        // bottom: createTabBar(_tabController, tabs),
-        bottom: TabBar(   //生成Tab菜单
-            controller: _tabController,
-            tabs: tabs.map((e) => Tab(text: e)).toList()
-        ),
+        bottom: createTabBar(_tabController, tabs),
         title: Text("Scaffold"),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.red,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
@@ -47,19 +48,58 @@ class _ScaffoldPageState extends State<ScaffoldPage>
         ],
       ),
       drawer: MyDrawer(),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("首页")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.business), title: Text("商业")),
-          BottomNavigationBarItem(icon: Icon(Icons.school), title: Text("学校")),
-        ],
-        currentIndex: _selectIndex,
-        fixedColor: Colors.blue,
-        onTap: _onItemTapped,
+      bottomNavigationBar: createBottomBar2(_selectIndex, _onItemTapped),
+      body: TabBarView(
+        controller: _tabController,
+        children: tabs.map((e) {
+          return Container(
+            alignment: Alignment.center,
+            child: Text(
+              e,
+              textScaleFactor: 5,
+            ),
+          );
+        }).toList(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: (){
+          print("FloatingActionButton Add");
+        },
       ),
     );
   }
+}
+
+///创建底部导航栏2
+BottomAppBar createBottomBar2(int selectIndex, Function(int) onItemTapped) {
+  return BottomAppBar(
+    color: Colors.white,
+    shape: CircularNotchedRectangle(), // 底部导航栏打一个圆形的洞
+    child: Row(
+      children: [
+        IconButton(icon: Icon(Icons.home)),
+        SizedBox(), //中间位置空出
+        IconButton(icon: Icon(Icons.business)),
+      ],
+      mainAxisAlignment: MainAxisAlignment.spaceAround, //均分底部导航栏横向空间
+    ),
+  );
+}
+
+///创建底部导航栏
+BottomNavigationBar createBottomBar(
+    int selectIndex, Function(int) onItemTapped) {
+  return BottomNavigationBar(
+    items: <BottomNavigationBarItem>[
+      BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("首页")),
+      BottomNavigationBarItem(icon: Icon(Icons.business), title: Text("商业")),
+      BottomNavigationBarItem(icon: Icon(Icons.school), title: Text("学校")),
+    ],
+    currentIndex: selectIndex,
+    fixedColor: Colors.blue,
+    onTap: onItemTapped,
+  );
 }
 
 ///自定义抽屉栏的按钮图标
@@ -76,6 +116,8 @@ Widget createLeading() {
 ///tabBar
 TabBar createTabBar(TabController controller, List list) {
   return TabBar(
+    labelColor: Colors.white,
+    indicatorColor: Colors.green,
     controller: controller,
     tabs: list.map((e) => Tab(text: e)).toList(),
   );
@@ -90,49 +132,48 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: MediaQuery.removePadding(
-        context: context,
-        //移除抽屉菜单顶部默认留白
-        removeTop: true,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 38.0),
-              child: Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: ClipOval(
-                      child: Image.asset(
-                        "assets/images/icon_5.webp",
-                        width: 60,
+          context: context,
+          removeTop: true, //移除顶部菜单默认留白
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 38),
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: ClipOval(
+                        child: Image.asset(
+                          "assets/images/icon_5.webp",
+                          width: 80,
+                        ),
                       ),
                     ),
-                  ),
-                  Text(
-                    "Wendux",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )
-                ],
+                    Text("欢迎XXXX")
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: ListView(
-                children: <Widget>[
-                  ListTile(
-                    leading: const Icon(Icons.add),
-                    title: const Text('Add account'),
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.settings),
-                    title: const Text('Manage accounts'),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+              Expanded(
+                child: ListView(
+                  children: <Widget>[
+                    ListTile(
+                      leading: const Icon(Icons.add),
+                      title: Text("Add"),
+                      onTap: () {
+                        print("1111");
+                      },
+                      focusColor: Colors.green,
+                    ),
+                    ListTile(
+                      leading: const Icon(Icons.settings),
+                      title: Text("Settings"),
+                    )
+                  ],
+                ),
+              )
+            ],
+          )),
     );
   }
 }
