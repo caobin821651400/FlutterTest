@@ -311,36 +311,36 @@ Widget createMultipleGridView() {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
+  const StaggeredTile.count(4, 4),
+  const StaggeredTile.count(4, 2),
+  const StaggeredTile.count(2, 4),
   const StaggeredTile.count(2, 2),
-  const StaggeredTile.count(2, 1),
-  const StaggeredTile.count(1, 2),
-  const StaggeredTile.count(1, 1),
+  const StaggeredTile.count(4, 4),
+  const StaggeredTile.count(2, 4),
   const StaggeredTile.count(2, 2),
-  const StaggeredTile.count(1, 2),
-  const StaggeredTile.count(1, 1),
-  const StaggeredTile.count(3, 1),
-  const StaggeredTile.count(1, 1),
-  const StaggeredTile.count(4, 1),
+  const StaggeredTile.count(6, 2),
+  const StaggeredTile.count(2, 2),
+  const StaggeredTile.count(8, 2),
 ];
 
 List<Widget> _tiles = const <Widget>[
-  const _Example01Tile(Colors.green, Icons.widgets),
-  const _Example01Tile(Colors.lightBlue, Icons.wifi),
-  const _Example01Tile(Colors.amber, Icons.panorama_wide_angle),
-  const _Example01Tile(Colors.brown, Icons.map),
-  const _Example01Tile(Colors.deepOrange, Icons.send),
-  const _Example01Tile(Colors.indigo, Icons.airline_seat_flat),
-  const _Example01Tile(Colors.red, Icons.bluetooth),
-  const _Example01Tile(Colors.pink, Icons.battery_alert),
-  const _Example01Tile(Colors.purple, Icons.desktop_windows),
-  const _Example01Tile(Colors.blue, Icons.radio),
+  const _Example01Tile(Colors.green, 0),
+  const _Example01Tile(Colors.lightBlue, 1),
+  const _Example01Tile(Colors.amber, 2),
+  const _Example01Tile(Colors.brown, 3),
+  const _Example01Tile(Colors.deepOrange, 4),
+  const _Example01Tile(Colors.indigo, 5),
+  const _Example01Tile(Colors.red, 6),
+  const _Example01Tile(Colors.pink, 7),
+  const _Example01Tile(Colors.purple, 8),
+  const _Example01Tile(Colors.blue, 9),
 ];
 
 Widget createMultipleGridView2() {
   return new Padding(
       padding: const EdgeInsets.only(top: 12.0),
       child: new StaggeredGridView.count(
-        crossAxisCount: 4,
+        crossAxisCount: 8,
         staggeredTiles: _staggeredTiles,
         children: _tiles,
         mainAxisSpacing: 4.0,
@@ -350,10 +350,10 @@ Widget createMultipleGridView2() {
 }
 
 class _Example01Tile extends StatelessWidget {
-  const _Example01Tile(this.backgroundColor, this.iconData);
+  const _Example01Tile(this.backgroundColor, this.index);
 
   final Color backgroundColor;
-  final IconData iconData;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -362,9 +362,9 @@ class _Example01Tile extends StatelessWidget {
       child: new InkWell(
         onTap: () {},
         child: new Center(
-          child: new Icon(
-            iconData,
-            color: Colors.white,
+          child: Text(
+            "$index",
+            style: TextStyle(color: Colors.white),
           ),
         ),
       ),
