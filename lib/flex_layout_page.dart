@@ -37,7 +37,7 @@ Widget content() {
         Padding(
           padding: const EdgeInsets.only(top: 20),
           child: SizedBox(
-            height: 100,
+            height: 200,
             child: Flex(
               direction: Axis.vertical,
               children: <Widget>[

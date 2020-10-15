@@ -6,14 +6,58 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 class ScrollPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("滑动"),
-      ),
-      body: createMultipleGridView2(),
+    return Material(
+      child: createCustomScrollView(),
     );
   }
+}
+
+///适用于多布局嵌套 ListView横向+ListView纵向
+Widget createCustomScrollView() {
+  return CustomScrollView(
+
+    slivers: <Widget>[
+      SliverAppBar(
+        pinned: true,
+        expandedHeight: 250,
+        flexibleSpace: FlexibleSpaceBar(
+          // title: Text("header"),
+          background: Image.asset(
+            "assets/images/icon_5.webp",
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+      SliverPadding(
+        padding: EdgeInsets.all(8),
+        sliver: SliverGrid(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            childAspectRatio: 4,
+          ),
+          delegate: SliverChildBuilderDelegate((context, index) {
+            return Container(
+              alignment: Alignment.center,
+              color: Colors.cyan[100 * (index % 9)],
+              child: new Text('grid item $index'),
+            );
+          }, childCount: 20),
+        ),
+      ),
+      SliverFixedExtentList(
+        itemExtent: 50,
+        delegate: SliverChildBuilderDelegate((context, index) {
+          return new Container(
+            alignment: Alignment.center,
+            color: Colors.lightBlue[100 * (index % 9)],
+            child: new Text('list item $index'),
+          );
+        }, childCount: 50),
+      )
+    ],
+  );
 }
 
 ///普通的ListView
