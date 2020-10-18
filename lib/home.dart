@@ -56,55 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
       )),
     );
   }
-
-  void centerBtnClick() {
-    ///通过 MaterialPageRoute 跳转
-    // Navigator.push(context, MaterialPageRoute(builder: (context) {
-    //   return NewRoute();
-    // }));
-
-    ///通过注册的路由表跳转 注册表带参数
-    // Navigator.pushNamed(context, ROUTE_PAGE);
-
-    ///通过注册的路由表跳转 pushNamed 传参数
-    // Navigator.of(context).pushNamed(PARAMS_PAGE, arguments: "arguments参数123");
-
-    ///没有注册的路由
-    // Navigator.of(context).pushNamed("no_register", arguments: "123");
-
-    ///进度条
-    // Navigator.pushNamed(context, PROGRESSPAGE);
-
-    ///布局用法
-    // Navigator.pushNamed(context, LAYOUTPAGE);
-
-    ///弹性布局
-    // Navigator.pushNamed(context, FLEXLAYOUTPAGE);
-
-    ///流失布局
-    // Navigator.pushNamed(context, FLOWLAYOUTPAGE);
-
-    ///叠层布局
-    // Navigator.pushNamed(context, STACKLAYOUTPAGE);
-
-    ///相对布局
-    // Navigator.pushNamed(context, ALIGNLAYOUTPAGE);
-
-    ///尺寸限制
-    //  Navigator.pushNamed(context, BOXPAGE);
-
-    ///转换
-    // Navigator.pushNamed(context, TRANSFORMPAGE);
-
-    ///scaffold
-    // Navigator.pushNamed(context, SCAFFOLDPAGE);
-
-    ///clip剪裁
-    // Navigator.pushNamed(context, CLIPPAGE);
-
-    ///滑动布局
-    Navigator.pushNamed(context, SCROLLPAGE);
-  }
 }
 
 class _HomeItem extends StatelessWidget {
