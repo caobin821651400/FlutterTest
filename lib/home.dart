@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'routes.dart';
 
 List<Widget> _items = const <Widget>[
-  const _HomeItem("展示一张图片",Colors.green, IMAGE_PAGE),
-  const _HomeItem("SnackBar使用",Colors.lightBlue, SNACKBARPAGE),
-  const _HomeItem("cupertino",Colors.amber, CUPERTINO_PAGE),
-  const _HomeItem("状态A",Colors.brown, STATEA_PAGE),
-  const _HomeItem("状态B",Colors.deepOrange, StatePageB_PAGE),
-  const _HomeItem("文本",Colors.indigo, TEXT_PAGE),
-  const _HomeItem("按钮",Colors.red, BUTTON_PAGE),
-  const _HomeItem("switch开关",Colors.pink, SWITCHANDCHECKBOXTESTROUTE),
-  const _HomeItem("输入框",Colors.purple, EDITPAGE),
-  const _HomeItem("自动校验输入框",Colors.blue, FORMTESTROUTE),
+  const _HomeItem("展示一张图片", Colors.green, IMAGE_PAGE),
+  const _HomeItem("SnackBar使用", Colors.lightBlue, SNACKBARPAGE),
+  const _HomeItem("cupertino", Colors.amber, CUPERTINO_PAGE),
+  const _HomeItem("状态A", Colors.brown, STATEA_PAGE),
+  const _HomeItem("状态B", Colors.deepOrange, StatePageB_PAGE),
+  const _HomeItem("文本", Colors.indigo, TEXT_PAGE),
+  const _HomeItem("按钮", Colors.red, BUTTON_PAGE),
+  const _HomeItem("switch开关", Colors.pink, SWITCHANDCHECKBOXTESTROUTE),
+  const _HomeItem("输入框", Colors.purple, EDITPAGE),
+  const _HomeItem("自动校验输入框", Colors.blue, FORMTESTROUTE),
+
   ///*****
   const _HomeItem("进度条", Colors.green, PROGRESSPAGE),
   const _HomeItem("布局用法", Colors.lightBlue, LAYOUTPAGE),
@@ -28,6 +29,11 @@ List<Widget> _items = const <Widget>[
   ///*****
   const _HomeItem("滑动布局", Colors.green, SCROLLPAGE),
   const _HomeItem("CustomScrollViewPage组合", Colors.lightBlue, CUSTOMSCROLLVIEWPAGE),
+  const _HomeItem("功能型组件", Colors.amber, FUNCTIONPAGE),
+  const _HomeItem("数据widget共享", Colors.brown, INHERITEDWIDGETTESTROUTE),
+  const _HomeItem("购物车数据共享示例", Colors.deepOrange, PROVIDERPAGE),
+  const _HomeItem("颜色相关", Colors.indigo, COLORPAGE),
+  const _HomeItem("异步更新", Colors.red, AYSNUIPAGE),
 ];
 
 ///home 为Flutter应用的首页，它也是一个widget。

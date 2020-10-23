@@ -12,17 +12,22 @@ import 'package:flutter_app2/progress_page.dart';
 import 'package:flutter_app2/scaffold_page.dart';
 import 'package:flutter_app2/scroll_page.dart.dart';
 import 'package:flutter_app2/stack_layout_page.dart';
+import 'package:flutter_app2/state/shop_item.dart';
 import 'package:flutter_app2/transform_page.dart';
 
 import 'FormTestRoute.dart';
 import 'SnackBarPage.dart';
 import 'align_layout_page.dart';
+import 'aysn/aysn_ui_page.dart';
 import 'box_page.dart';
 import 'clip_page.dart.dart';
+import 'color/color_page.dart';
 import 'custom_scrollView_page.dart';
 import 'flex_layout_page.dart';
 import 'flow_layout_page.dart';
+import 'function_page.dart';
 import 'home.dart';
+import 'inherited_page.dart';
 
 const String homeRoute = '/';
 
@@ -50,6 +55,11 @@ const String CLIPPAGE = "ClipPage";
 const String SCROLLPAGE = "ScrollPage";
 const String SNACKBARPAGE = "SnackBarPage";
 const String CUSTOMSCROLLVIEWPAGE = "CustomScrollViewPage";
+const String FUNCTIONPAGE = "FunctionPage";
+const String INHERITEDWIDGETTESTROUTE = "InheritedWidgetTestRoute";
+const String PROVIDERPAGE = "ProviderPage";
+const String COLORPAGE = "ColorPage";
+const String AYSNUIPAGE = "AysnUiPage";
 
 
 ///集合
@@ -77,4 +87,9 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   SCROLLPAGE: (context) => ScrollPage(),
   SNACKBARPAGE: (context) => SnackBarPage(),
   CUSTOMSCROLLVIEWPAGE: (context) => CustomScrollViewPage(),
+  FUNCTIONPAGE: (context) => FunctionPage(),
+  INHERITEDWIDGETTESTROUTE: (context) => InheritedWidgetTestRoute(),
+  PROVIDERPAGE: (context) => ProviderPage(),
+  COLORPAGE: (context) => ColorPage(),
+  AYSNUIPAGE: (context) => AysnUiPage(),
 };
