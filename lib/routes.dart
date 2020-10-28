@@ -23,6 +23,7 @@ import 'box_page.dart';
 import 'clip_page.dart.dart';
 import 'color/color_page.dart';
 import 'custom_scrollView_page.dart';
+import 'dialog/dialog_page.dart';
 import 'flex_layout_page.dart';
 import 'flow_layout_page.dart';
 import 'function_page.dart';
@@ -60,6 +61,7 @@ const String INHERITEDWIDGETTESTROUTE = "InheritedWidgetTestRoute";
 const String PROVIDERPAGE = "ProviderPage";
 const String COLORPAGE = "ColorPage";
 const String AYSNUIPAGE = "AysnUiPage";
+const String DIALOGPAGE = "DialogPage";
 
 
 ///集合
@@ -92,4 +94,5 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   PROVIDERPAGE: (context) => ProviderPage(),
   COLORPAGE: (context) => ColorPage(),
   AYSNUIPAGE: (context) => AysnUiPage(),
+  DIALOGPAGE: (context) => DialogPage(),
 };

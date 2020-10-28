@@ -34,6 +34,7 @@ List<Widget> _items = const <Widget>[
   const _HomeItem("购物车数据共享示例", Colors.deepOrange, PROVIDERPAGE),
   const _HomeItem("颜色相关", Colors.indigo, COLORPAGE),
   const _HomeItem("异步更新", Colors.red, AYSNUIPAGE),
+  const _HomeItem("弹窗", Colors.pink, DIALOGPAGE),
 ];
 
 ///home 为Flutter应用的首页，它也是一个widget。
