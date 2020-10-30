@@ -38,6 +38,12 @@ class _DialogPageState extends State<DialogPage> {
                   print("返回值= $str");
                 },
               ),
+              RaisedButton(
+                child: Text("自定义弹窗"),
+                onPressed: () async {
+                  showMyCustomDialog(context);
+                },
+              ),
             ],
           ),
         ));
@@ -50,20 +56,23 @@ Future<String> showListDialog(BuildContext context) {
       context: context,
       builder: (context) {
         return Dialog(
-          child: Column(
-            children: <Widget>[
-              ListTile(title: Text("请选择")),
-              Expanded(
-                  child: ListView.builder(
-                itemCount: 30,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text("$index"),
-                    onTap: () => Navigator.of(context).pop("$index"),
-                  );
-                },
-              )),
-            ],
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.5,
+            child: Column(
+              children: <Widget>[
+                ListTile(title: Text("请选择")),
+                Expanded(
+                    child: ListView.builder(
+                  itemCount: 30,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      title: Text("$index"),
+                      onTap: () => Navigator.of(context).pop("$index"),
+                    );
+                  },
+                )),
+              ],
+            ),
           ),
         );
       });
@@ -117,4 +126,59 @@ Future<bool> showDialog1(BuildContext context) {
           ],
         );
       });
+}
+
+Future<void> showMyCustomDialog(BuildContext context) {
+  return showCustomDialog<void>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("自定义的对话框"),
+          content: Text("内容区域内容区域内容区域内容区域"),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("取消"),
+              onPressed: () {
+                print("取消");
+                Navigator.of(context).pop();
+              },
+            ),
+            FlatButton(
+              child: Text("确定"),
+              onPressed: () {
+                Toast.toast(context, "确定");
+              },
+            )
+          ],
+        );
+      });
+}
+
+///自定义对话框
+Future<T> showCustomDialog<T>({@required BuildContext context, bool isCanCancel = true, WidgetBuilder builder}) {
+  final ThemeData themeData = Theme.of(context, shadowThemeOnly: true);
+
+  return showGeneralDialog(
+      context: context,
+      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+        final Widget pageChild = Builder(builder: builder);
+        return SafeArea(
+          child: Builder(builder: (BuildContext context) {
+            return themeData != null ? Theme(data: themeData, child: pageChild) : pageChild;
+          }),
+        );
+      },
+      barrierDismissible: isCanCancel,
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      barrierColor: Colors.black54,
+      transitionDuration: const Duration(milliseconds: 300),
+      transitionBuilder: _buildMaterialDialogTransitions);
+}
+
+Widget _buildMaterialDialogTransitions(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+//使用缩放动画
+  return ScaleTransition(
+    scale: CurvedAnimation(parent: animation, curve: Curves.easeOut),
+    child: child,
+  );
 }
