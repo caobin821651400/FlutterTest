@@ -44,6 +44,12 @@ class _DialogPageState extends State<DialogPage> {
                   showMyCustomDialog(context);
                 },
               ),
+              RaisedButton(
+                child: Text("复选框状态"),
+                onPressed: () async {
+                  showDialogCheckBox(context);
+                },
+              ),
             ],
           ),
         ));
@@ -181,4 +187,62 @@ Widget _buildMaterialDialogTransitions(BuildContext context, Animation<double> a
     scale: CurvedAnimation(parent: animation, curve: Curves.easeOut),
     child: child,
   );
+}
+
+///弹窗复选框
+Future<bool> showDialogCheckBox(BuildContext context) {
+  bool isCheck = false;
+  return showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("温馨提示"),
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text("您确定要删除当前文件吗?"),
+              Row(
+                children: <Widget>[
+                  Text("同时删除子目录？"),
+                  //第一种方式不太好，context是取得showDialog下面的，导致过多的重绘
+                  // Checkbox(
+                  //   value: isCheck,
+                  //   onChanged: (bool value) {
+                  //     (context as Element).markNeedsBuild();
+                  //     isCheck = !isCheck;
+                  //   },
+                  // ),
+                  //第二种缩小的context范围，只是Checkbox的context
+                  Builder(
+                    builder: (BuildContext context) {
+                      return Checkbox(
+                        value: isCheck,
+                        onChanged: (bool value) {
+                          (context as Element).markNeedsBuild();
+                          isCheck = !isCheck;
+                        },
+                      );
+                    },
+                  )
+                ],
+              )
+            ],
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("取消"),
+              onPressed: () => Navigator.of(context).pop(false),
+            ),
+            FlatButton(
+              child: Text("删除"),
+              onPressed: () {
+                Toast.toast(context, "删除成功");
+                Navigator.of(context).pop(true);
+              },
+            )
+          ],
+        );
+      });
 }
