@@ -24,6 +24,7 @@ import 'clip_page.dart.dart';
 import 'color/color_page.dart';
 import 'custom_scrollView_page.dart';
 import 'dialog/dialog_page.dart';
+import 'event/event_test.dart';
 import 'flex_layout_page.dart';
 import 'flow_layout_page.dart';
 import 'function_page.dart';
@@ -62,6 +63,7 @@ const String PROVIDERPAGE = "ProviderPage";
 const String COLORPAGE = "ColorPage";
 const String AYSNUIPAGE = "AysnUiPage";
 const String DIALOGPAGE = "DialogPage";
+const String EVENTPAGE = "EventPage";
 
 
 ///集合
@@ -95,4 +97,5 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   COLORPAGE: (context) => ColorPage(),
   AYSNUIPAGE: (context) => AysnUiPage(),
   DIALOGPAGE: (context) => DialogPage(),
+  EVENTPAGE: (context) => EventPage(),
 };
