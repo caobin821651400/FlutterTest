@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app2/utils/event_bus.dart';
 
 import 'routes.dart';
 
@@ -36,6 +37,7 @@ List<Widget> _items = const <Widget>[
   const _HomeItem("异步更新", Colors.red, AYSNUIPAGE),
   const _HomeItem("弹窗", Colors.pink, DIALOGPAGE),
   const _HomeItem("事件处理", Colors.purple, EVENTPAGE),
+  const _HomeItem("全局事件总线", Colors.blue, IEVENTBUS),
 ];
 
 ///home 为Flutter应用的首页，它也是一个widget。
@@ -45,16 +47,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var _title = "Flutter Demo Home Page";
+
   @override
   void initState() {
     super.initState();
+    //测试全局事件总线
+    XEventBus.on("test", (arg) {
+      setState(() {
+        _title = "$arg";
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Flutter Demo Home Page"),
+        title: Text(_title),
         shadowColor: Colors.red,
       ),
       body: Scrollbar(

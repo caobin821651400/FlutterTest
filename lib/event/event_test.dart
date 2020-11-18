@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../toast.dart';
@@ -13,6 +14,7 @@ class _EventPageState extends State<EventPage> {
   String _eventName = "event_name";
   double _top = 0.0; //距顶部的偏移
   double _left = 0.0; //距左边的偏移
+  double _imageWidth = 100;
 
   @override
   Widget build(BuildContext context) {
@@ -157,5 +159,81 @@ class _EventPageState extends State<EventPage> {
         )
       ],
     );
+  }
+
+  ///缩放
+  Widget _demo8() {
+    print("width= $_imageWidth");
+    return Center(
+      child: GestureDetector(
+        child: Container(
+          width: _imageWidth,
+          height: _imageWidth,
+          color: Colors.blue,
+        ),
+        onScaleUpdate: (ScaleUpdateDetails details) {
+          setState(() {
+            //缩放倍数在0.8到10倍之间
+            _imageWidth = 200 * details.scale.clamp(.8, 10.0);
+          });
+        },
+      ),
+    );
+  }
+
+  ///富文本 事件
+  TapGestureRecognizer _recognizer = TapGestureRecognizer();
+  bool _toggle = false; //变色开关
+  Widget _demo9() {
+    return Center(
+      child: Text.rich(TextSpan(
+        children: [
+          TextSpan(text: "1234"),
+          TextSpan(
+            text: "点击变色",
+            style: TextStyle(fontSize: 30.0, color: _toggle ? Colors.blue : Colors.red),
+            recognizer: _recognizer..onTap=(){
+              setState(() {
+                _toggle=!_toggle;
+              });
+            }
+          ),
+          TextSpan(text: "5678"),
+        ],
+      )),
+    );
+  }
+
+
+  Widget _demo10(){
+    return Stack(
+      children: <Widget>[
+        Positioned(
+          top: _top,
+          left: _left,
+          child: GestureDetector(
+            child: CircleAvatar(child: Text("A")),
+            //垂直方向拖动事件
+            onVerticalDragUpdate: (DragUpdateDetails details) {
+              setState(() {
+                _top += details.delta.dy;
+              });
+            },
+            onHorizontalDragUpdate: (DragUpdateDetails details) {
+              setState(() {
+                _left += details.delta.dx;
+              });
+            },
+          ),
+        )
+      ],
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    //用完要释放
+    _recognizer.dispose();
   }
 }
