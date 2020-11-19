@@ -26,6 +26,7 @@ import 'custom_scrollView_page.dart';
 import 'dialog/dialog_page.dart';
 import 'event/event_bus_test.dart';
 import 'event/event_test.dart';
+import 'event/notification_page.dart';
 import 'flex_layout_page.dart';
 import 'flow_layout_page.dart';
 import 'function_page.dart';
@@ -66,6 +67,7 @@ const String AYSNUIPAGE = "AysnUiPage";
 const String DIALOGPAGE = "DialogPage";
 const String EVENTPAGE = "EventPage";
 const String IEVENTBUS = "IEventBus";
+const String NOTIFICATIONPAGE = "NotificationPage";
 
 
 ///集合
@@ -101,4 +103,5 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   DIALOGPAGE: (context) => DialogPage(),
   EVENTPAGE: (context) => EventPage(),
   IEVENTBUS: (context) => IEventBus(),
+  NOTIFICATIONPAGE: (context) => NotificationPage(),
 };

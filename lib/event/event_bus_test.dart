@@ -14,9 +14,9 @@ class _IEventBusState extends State<IEventBus> {
       appBar: AppBar(title: Text("eventbus")),
       body: Center(
         child: RaisedButton(
-          child: Text("发送事件"),
+          child: Text("改变首页的标题"),
           onPressed: () {
-            XEventBus.emit("test", 111);
+            XEventBus.emit("test", "事件总线");
           },
         ),
       ),

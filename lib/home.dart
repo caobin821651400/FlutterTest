@@ -38,6 +38,9 @@ List<Widget> _items = const <Widget>[
   const _HomeItem("弹窗", Colors.pink, DIALOGPAGE),
   const _HomeItem("事件处理", Colors.purple, EVENTPAGE),
   const _HomeItem("全局事件总线", Colors.blue, IEVENTBUS),
+
+  ///*****
+  const _HomeItem("通知notification", Colors.green, NOTIFICATIONPAGE),
 ];
 
 ///home 为Flutter应用的首页，它也是一个widget。
