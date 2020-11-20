@@ -13,7 +13,7 @@ class _NotificationPageState extends State<NotificationPage> {
       appBar: AppBar(
         title: Text("通知"),
       ),
-      body: _demo2(),
+      body: MyNotificationPage(),
     );
   }
 
@@ -64,6 +64,59 @@ class _NotificationPageState extends State<NotificationPage> {
               return ListTile(title: Text("$item"));
             },
             itemCount: 50),
+      ),
+    );
+  }
+}
+
+class MyNotification extends Notification {
+  final String msg;
+
+  MyNotification(this.msg);
+}
+
+class MyNotificationPage extends StatefulWidget {
+  @override
+  _MyNotificationPageState createState() => _MyNotificationPageState();
+}
+
+class _MyNotificationPageState extends State<MyNotificationPage> {
+  String _msg = "";
+
+  @override
+  Widget build(BuildContext context) {
+    return NotificationListener<MyNotification>(
+      onNotification: (notification) {
+        print("收到通知 ${notification.msg}");
+        return false;
+      },
+      child: NotificationListener<MyNotification>(
+        onNotification: (notification) {
+          setState(() {
+            _msg += notification.msg + "  ";
+          });
+          //如果这里返回true了 上面的onNotification就收不到通知
+          return false;
+        },
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(_msg),
+              Builder(
+                builder: (context) {
+                  return RaisedButton(
+                    onPressed: () => {
+                      //分发入口
+                      MyNotification("hi ").dispatch(context)
+                    },
+                    child: Text("发送通知"),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
