@@ -18,6 +18,7 @@ import 'package:flutter_app2/transform_page.dart';
 import 'FormTestRoute.dart';
 import 'SnackBarPage.dart';
 import 'align_layout_page.dart';
+import 'anim/anim_page.dart';
 import 'aysn/aysn_ui_page.dart';
 import 'box_page.dart';
 import 'clip_page.dart.dart';
@@ -68,7 +69,7 @@ const String DIALOGPAGE = "DialogPage";
 const String EVENTPAGE = "EventPage";
 const String IEVENTBUS = "IEventBus";
 const String NOTIFICATIONPAGE = "NotificationPage";
-
+const String ANIMPAGE = "AnimPage";
 
 ///集合
 Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
@@ -104,4 +105,5 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   EVENTPAGE: (context) => EventPage(),
   IEVENTBUS: (context) => IEventBus(),
   NOTIFICATIONPAGE: (context) => NotificationPage(),
+  ANIMPAGE: (context) => AnimPage(),
 };

@@ -41,6 +41,7 @@ List<Widget> _items = const <Widget>[
 
   ///*****
   const _HomeItem("通知notification", Colors.green, NOTIFICATIONPAGE),
+  const _HomeItem("动画", Colors.lightBlue, ANIMPAGE),
 ];
 
 ///home 为Flutter应用的首页，它也是一个widget。
