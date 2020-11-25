@@ -1,6 +1,11 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app2/utils/event_bus.dart';
 
+import 'anim/scale_anim.dart';
 import 'routes.dart';
 
 List<Widget> _items = const <Widget>[
@@ -95,10 +100,27 @@ class _HomeItem extends StatelessWidget {
       child: RaisedButton(
         onPressed: () {
           Navigator.of(context).pushNamed(routeName);
+          // jump(context,null);
+
+          // Navigator.push(context, CupertinoPageRoute(builder: (context)=> ScaleAnimRoute()));
         },
         color: background,
         child: Text("$title", style: TextStyle(color: Colors.white)),
       ),
     );
+  }
+
+  ///自定义跳转动画
+  void jump(BuildContext context,String routeName)
+   {
+    Navigator.push(context, PageRouteBuilder(
+      transitionDuration: Duration(seconds: 1),
+      pageBuilder: (BuildContext context,Animation animation,Animation secondesAnimation){
+        return FadeTransition(
+          opacity: animation,
+          child: ScaleAnimRoute(),
+        );
+      }
+    ));
   }
 }
