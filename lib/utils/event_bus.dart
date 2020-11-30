@@ -4,6 +4,8 @@ typedef void EventCallback(arg);
 
 var XEventBus = EventBus();
 
+var  ximg="assets/images/icon_5.webp";
+
 class EventBus {
   //私有构造函数
   EventBus._internal();

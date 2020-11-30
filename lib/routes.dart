@@ -19,6 +19,7 @@ import 'FormTestRoute.dart';
 import 'SnackBarPage.dart';
 import 'align_layout_page.dart';
 import 'anim/anim_page.dart';
+import 'anim/more_anim.dart';
 import 'aysn/aysn_ui_page.dart';
 import 'box_page.dart';
 import 'clip_page.dart.dart';
@@ -31,6 +32,7 @@ import 'event/notification_page.dart';
 import 'flex_layout_page.dart';
 import 'flow_layout_page.dart';
 import 'function_page.dart';
+import 'hero/heroa.dart';
 import 'home.dart';
 import 'inherited_page.dart';
 
@@ -70,6 +72,8 @@ const String EVENTPAGE = "EventPage";
 const String IEVENTBUS = "IEventBus";
 const String NOTIFICATIONPAGE = "NotificationPage";
 const String ANIMPAGE = "AnimPage";
+const String HEROAPAGE = "HeroAPage";
+const String STAGGERROUTE = "StaggerRoute";
 
 ///集合
 Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
@@ -106,4 +110,6 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   IEVENTBUS: (context) => IEventBus(),
   NOTIFICATIONPAGE: (context) => NotificationPage(),
   ANIMPAGE: (context) => AnimPage(),
+  HEROAPAGE: (context) => HeroAPage(),
+  STAGGERROUTE: (context) => StaggerRoute(),
 };

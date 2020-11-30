@@ -1,7 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app2/utils/event_bus.dart';
 
@@ -47,6 +44,8 @@ List<Widget> _items = const <Widget>[
   ///*****
   const _HomeItem("通知notification", Colors.green, NOTIFICATIONPAGE),
   const _HomeItem("动画", Colors.lightBlue, ANIMPAGE),
+  const _HomeItem("共享转场动画", Colors.amber, HEROAPAGE),
+  const _HomeItem("多个动画动画", Colors.brown, STAGGERROUTE),
 ];
 
 ///home 为Flutter应用的首页，它也是一个widget。
@@ -111,16 +110,16 @@ class _HomeItem extends StatelessWidget {
   }
 
   ///自定义跳转动画
-  void jump(BuildContext context,String routeName)
-   {
-    Navigator.push(context, PageRouteBuilder(
-      transitionDuration: Duration(seconds: 1),
-      pageBuilder: (BuildContext context,Animation animation,Animation secondesAnimation){
-        return FadeTransition(
-          opacity: animation,
-          child: ScaleAnimRoute(),
-        );
-      }
-    ));
+  void jump(BuildContext context, String routeName) {
+    Navigator.push(
+        context,
+        PageRouteBuilder(
+            transitionDuration: Duration(seconds: 1),
+            pageBuilder: (BuildContext context, Animation animation, Animation secondesAnimation) {
+              return FadeTransition(
+                opacity: animation,
+                child: ScaleAnimRoute(),
+              );
+            }));
   }
 }
