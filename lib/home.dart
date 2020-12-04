@@ -47,6 +47,7 @@ List<Widget> _items = const <Widget>[
   const _HomeItem("共享转场动画", Colors.amber, HEROAPAGE),
   const _HomeItem("多个动画", Colors.brown, STAGGERROUTE),
   const _HomeItem("动画切换", Colors.deepOrange, ANIMSWITCHER),
+  const _HomeItem("过度动画", Colors.indigo, OVERANIMPAGE),
 ];
 
 ///home 为Flutter应用的首页，它也是一个widget。

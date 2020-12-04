@@ -21,6 +21,7 @@ import 'align_layout_page.dart';
 import 'anim/anim_page.dart';
 import 'anim/anim_switcher.dart';
 import 'anim/more_anim.dart';
+import 'anim/over_anim.dart';
 import 'aysn/aysn_ui_page.dart';
 import 'box_page.dart';
 import 'clip_page.dart.dart';
@@ -76,6 +77,7 @@ const String ANIMPAGE = "AnimPage";
 const String HEROAPAGE = "HeroAPage";
 const String STAGGERROUTE = "StaggerRoute";
 const String ANIMSWITCHER = "AnimSwitcher";
+const String OVERANIMPAGE = "OverAnimPage";
 
 ///集合
 Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
@@ -115,4 +117,5 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   HEROAPAGE: (context) => HeroAPage(),
   STAGGERROUTE: (context) => StaggerRoute(),
   ANIMSWITCHER: (context) => AnimSwitcher(),
+  OVERANIMPAGE: (context) => OverAnimPage(),
 };
