@@ -14,27 +14,51 @@ class _OverAnimPageState extends State<OverAnimPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("过度动画")),
-      body: AnimatedDecoratedBox1(
-        duration: duration,
-        decoration: BoxDecoration(color: _decorationColor),
-        child: FlatButton(
-          onPressed: () {
-            setState(() {
-              if (!isRed)
-                _decorationColor = Colors.red;
-              else
-                _decorationColor = Colors.blue;
-              isRed=!isRed;
-            });
-          },
-          child: Text(
-            "AnimatedDecoratedBox",
-            style: TextStyle(color: Colors.white),
+        appBar: AppBar(title: Text("过度动画")),
+
+        ///手动实现
+        // body: AnimatedDecoratedBox1(
+        //   duration: duration,
+        //   decoration: BoxDecoration(color: _decorationColor),
+        //   child: FlatButton(
+        //     onPressed: () {
+        //       setState(() {
+        //         if (!isRed)
+        //           _decorationColor = Colors.red;
+        //         else
+        //           _decorationColor = Colors.blue;
+        //         isRed = !isRed;
+        //       });
+        //     },
+        //     child: Text(
+        //       "AnimatedDecoratedBox",
+        //       style: TextStyle(color: Colors.white),
+        //     ),
+        //   ),
+        // ),
+
+        ///内置框架
+        body: Center(
+          child: AnimatedDecoratedBox2(
+            decoration: BoxDecoration(color: _decorationColor),
+            duration: Duration(milliseconds: _decorationColor == Colors.blue ? 400 : 2000),
+            child: Builder(
+              builder: (context) {
+                return FlatButton(
+                  onPressed: () {
+                    setState(() {
+                      _decorationColor = _decorationColor == Colors.blue ? Colors.red : Colors.blue;
+                    });
+                  },
+                  child: Text(
+                    "AnimatedDecoratedBox toggle",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                );
+              },
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
 
@@ -126,5 +150,41 @@ class _AnimatedDecoratedBox1State extends State<AnimatedDecoratedBox1> with Sing
         child: widget.child,
       ),
     );
+  }
+}
+
+class AnimatedDecoratedBox2 extends ImplicitlyAnimatedWidget {
+  final BoxDecoration decoration;
+  final Widget child;
+
+  AnimatedDecoratedBox2(
+      {Key key,
+      @required this.decoration,
+      this.child,
+      Curve curve = Curves.linear, //动画曲线
+      @required Duration duration,
+      Decoration reverseDuration})
+      : super(key: key, curve: curve, duration: duration);
+
+  @override
+  ImplicitlyAnimatedWidgetState<ImplicitlyAnimatedWidget> createState() {
+    return _AnimatedDecoratedBoxState();
+  }
+}
+
+class _AnimatedDecoratedBoxState extends AnimatedWidgetBaseState<AnimatedDecoratedBox2> {
+  DecorationTween _decorationTween;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: _decorationTween.evaluate(animation),
+      child: widget.child,
+    );
+  }
+
+  @override
+  void forEachTween(visitor) {
+    _decorationTween = visitor(_decorationTween, widget.decoration, (value) => DecorationTween(begin: value));
   }
 }
